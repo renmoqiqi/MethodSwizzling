@@ -12,7 +12,8 @@
 @implementation ViewController (Swizzling)
 
 + (void)load {
-    [super load];
+    //注意不要调用super load方法，因为父类的Swizzling就失效了
+//     [super load];
     // 通过class_getInstanceMethod()函数从当前对象中的method list获取method结构体，如果是类方法就使用class_getClassMethod()函数获取。
     Method fromMethod = class_getInstanceMethod([self class], @selector(viewDidLoad));
     Method toMethod = class_getInstanceMethod([self class], @selector(swizzlingViewDidLoad));
